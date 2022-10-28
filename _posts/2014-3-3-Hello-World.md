@@ -3,8 +3,6 @@ layout: post
 title: (Work in progress) How to Think About Matrix Multiplication
 ---
 
-# (Work in progress) How to Think About Matrix Multiplication
-
 ## Intro
 
 One of the most common concepts in linear algebra is matrix multiplication, which can be summarized by a single formula. If $A$ is a matrix of size $m \times n$ and $B$ is a matrix of size $n \times p$, then $C = A \cdot B$ is a matrix of size $m \times p$, where its cells are given by the following formula:
