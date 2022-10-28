@@ -4,12 +4,15 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+I am Yiftach Beer, a software & algorithsm developer.
+
+This blog is where I explain concepts that I feel could be taught better.
 
 ### More Information
+I've recently finished my M.Sc at the Hebrew University in Jerusalem, conducting research on deep learning and convex optimization. 
 
-A place to include any other types of information that you'd like to include about yourself.
+Prior to do that I was the software lead at Nyx Technologies, led a software team at unit 8200 at the IDF and was a software developer at Applied Immune Technologies (later acquired by Adicet Bio).
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[yiftach.beer@gmail.com](mailto:yiftach.beer@gmail.com)
