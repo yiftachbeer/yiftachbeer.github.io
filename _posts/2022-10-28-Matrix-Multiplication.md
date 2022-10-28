@@ -3,9 +3,9 @@ layout: post
 title: (Work in progress) How to Think About Matrix Multiplication
 ---
 
-## Intro
+Matrix multiplication is one of the concepts where reading the formula is easy, but developing intuition takes more time. Since it is such a common concept in linear algebra, in this post I will try to explain it better.
 
-One of the most common concepts in linear algebra is matrix multiplication, which can be summarized by a single formula. If $A$ is a matrix of size $m \times n$ and $B$ is a matrix of size $n \times p$, then $C = A \cdot B$ is a matrix of size $m \times p$, where its cells are given by the following formula:
+The formal definition goes like this - if $A$ is a matrix of size $m \times n$ and $B$ is a matrix of size $n \times p$, then $C = A \cdot B$ is a matrix of size $m \times p$, where its cells are given by
 
 $$ C_{ij}=\sum_{k=1}^{n} A_{ik} \cdot B_{kj} $$
 
@@ -13,7 +13,7 @@ In other words, the cell at row $i$ and column $j$ in $C$ is calculated by summi
 
 (animation for basic intuition, e.g. Wikipedia)
 
-Stopping the explanation at this point, however, is doing matrix multiplication an injustice - this technical definition does not give any helpful intuition on in what situations matrix multiplications might arise, or how its output is affected by its input. To make things worse, the same concept has multiple possible interpretations each suitable to a different situation, and having only a single interpretation in mind might only make it confusing when another interpretation is more suitable.
+Stopping the explanation at this point, however, is doing matrix multiplication an injustice - this technical definition does not show the situations in which matrix multiplications might arise, or help understand how its output is affected by its input. To make things worse, the same concept has multiple possible interpretations each suitable to a different situation, and having only a single interpretation in mind might only make it confusing when another interpretation is more suitable.
 
 The goal of this post, therefore, is to outline some common interpretations of matrix multiplication, propose how to best mentally visualize them, and help identify when each of them might be useful.
 
@@ -45,7 +45,7 @@ Another important building block is the matrix, which is a two-dimensional array
 
 (image of 2d array of numbers)
 
-While all matrices are made up of such numbers, sometimes the numbers have an additional meaning. The most simple example is a matrix that is formed by grouping vectors, as rows or as columns:
+While all matrices are made up of such numbers, sometimes the numbers come with an additional meaning. The most simple example is a matrix that is formed by grouping vectors, as rows or as columns:
 
 (image of 2d array of numbers split into rows or columns)
 ?(image of groups of the objects from previous paragraph?)
