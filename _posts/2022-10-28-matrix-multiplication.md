@@ -3,9 +3,9 @@ layout: post
 title: (Work in progress) How to Think About Matrix Multiplication
 ---
 
-Matrix multiplication is one of the concepts where reading the formula is easy, but developing intuition takes more time. Since it is such a common concept in linear algebra, in this post I will try to explain it better.
+Matrix multiplication is one of the concepts where reading the formula is easy, but developing intuition takes more time. Since it is such a common concept in linear algebra, in this post we try to develop better intuitions for it.
 
-The formal definition goes like this - if $A$ is a matrix of size $m \times n$ and $B$ is a matrix of size $n \times p$, then $C = A \cdot B$ is a matrix of size $m \times p$, where its cells are given by
+Matrix multiplication is formally defined as follows - if $A$ is a matrix of size $m \times n$ and $B$ is a matrix of size $n \times p$, then $C = A \cdot B$ is a matrix of size $m \times p$, where its cells are given by
 
 $$ C_{ij}=\sum_{k=1}^{n} A_{ik} \cdot B_{kj} $$
 
@@ -27,7 +27,7 @@ The most basic building block of linear algebra is a vector, which is just an ar
 
 (image of array of numbers)
 
-This bare bones representation is mainly useful when each cell describes a completely different property in a different scale, which just happen to be grouped in an arbitrary ordering. For example, if the vector represents the attributes of a house, the first cell might contain its size and the second cell its number of rooms.
+This bare-bones representation is mainly useful when each cell describes a completely different property in a different scale, which just happen to be grouped in an arbitrary ordering. For example, if the vector represents the attributes of a house, the first cell might contain its size and the second cell its number of rooms.
 
 Sometimes, however, we prefer to think of these numbers as coordinates of a space. While this is always possible, it is mainly helpful when all cells contain numbers with similar meaning and scale (otherwise distances and angles don't tell us much). It is then helpful to imagine the vector as a point in space, or an arrow from the origin to that point:
 
@@ -85,7 +85,7 @@ When both vectors represent an object of the same type (for example, an image) w
 
 ### Matrix-vector multiplication
 
-The interpertation for a product of the form $u = A \cdot v$ highly depends on what $A$ and $v$ represent.
+The interpretation for a product of the form $u = A \cdot v$ highly depends on what $A$ and $v$ represent.
 
 When $A$ is a list of row vectors, this is equivalent to a many simultaneous vector-vector multiplications (in the house prices example - calculate the price of many houses)
 
