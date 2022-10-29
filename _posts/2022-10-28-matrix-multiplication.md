@@ -49,9 +49,9 @@ While all matrices are made up of such numbers, sometimes the numbers come with 
 
 ![Matrix split into rows or columns]({{ site.baseurl }}/images/matrix_multiplication/matrix_as_cols_and_rows.png "Matrix split into rows and columns>")
 
-Every matrix can also be used as a transformation which takes a vector as an input and returns another vector as its output. Instead of saying we *apply* the matrix *to* a vector, we say we *multiply* the matrix *with* the vector. 
+Every matrix can also be used as a transformation which takes a vector as an input and returns another vector as its output. Instead of saying we **apply** the matrix **to** a vector, we say we **multiply** the matrix **with** the vector. 
 
-While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation, what we visualize instead of the *content* of the matrix is usually its *effect* on vectors.
+While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation, what we visualize instead of the **content** of the matrix is usually its **effect** on vectors.
 
 ![Before and after]({{ site.baseurl }}/images/matrix_multiplication/matrix_as_transformation.png "Before and after")
 
@@ -65,25 +65,23 @@ To build up to multiplying a matrix by a matrix, we start with multiplying a vec
 
 Multiplying a vector $v$ with a vector $u$ gives a single number, a scalar, that is calculated with the formula $\sum_{i=1}^{n} v_{i} \cdot u_{i}$, which we have seen appearing for each cell in the output matrix in the introduction. Based on what the vectors represent, we can give this operation different meanings: 
 
-When one of the vectors is a set of coefficients, this sum is a weighted combination of the other. In the house prices setting, if the $i$-th cell of $v$ contains some attribute of the house and the corresponding cell of $u$ contains the money we can expect for one unit of this attribute, then $v \cdot u$ gives us the money we can expect for this house.
+1. When one of the vectors is a set of coefficients, this sum is a weighted combination of the other. In the house prices setting, if the $i$-th cell of $v$ contains some attribute of the house and the corresponding cell of $u$ contains the money we can expect for one unit of this attribute, then $v \cdot u$ gives us the money we can expect for this house.
 
 ![Weighted combination]({{ site.baseurl }}/images/matrix_multiplication/dot_as_combination_house.png "Weighted combination")
 
-When both vectors are interpreted as points in space, the product also has a geometric meaning. 
+2. When both vectors are interpreted as points in space, the product also has a geometric meaning. 
 An additional formula for the product of $v$ and $u$ is then
 
 $$ v \cdot u = \|v\| \cdot \|u\| \cdot \cos(\theta) $$
 
 Where 
-$ \|v\| $ is the length of $v$, $ \|u\| $ is the length of $u$ and $ \theta $ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars. 
+$\|v\|$ is the length of $v$, $\|u\|$ is the length of $u$ and $ \theta $ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars. 
 
 This is mainly interesting when the lengths of both vectors are constant (e.g. they are 1), and then a higher result corresponds to the angle between them being more acute. In other words, the product measures "to what degree are $u$ and $v$ pointing in the same direction" which we think of as "how similar are $u$ and $v$".
 
-TODO describe projection in direction
-
 ![Projection]({{ site.baseurl }}/images/matrix_multiplication/dot_as_projection.png "Projection")
 
-When both vectors represent an object of the same type (for example, an image) we still interpret their product as similarity or correlation, without thinking about angles. (image pattern matching)
+3. When both vectors represent an object of the same type (for example, an image) we still interpret their product as similarity or correlation, without thinking about angles.
 
 ![Pattern matching]({{ site.baseurl }}/images/matrix_multiplication/dot_as_pattern_matching.png "Pattern matching")
 
@@ -91,19 +89,25 @@ When both vectors represent an object of the same type (for example, an image) w
 
 The interpretation for a product of the form $u = A \cdot v$ highly depends on what $A$ and $v$ represent.
 
-When $A$ is a list of row vectors, this is equivalent to a many simultaneous vector-vector multiplications (in the house prices example - calculate the price of many houses)
+1. When $A$ is a list of row vectors, this is equivalent to a many simultaneous vector-vector multiplications (in the house prices example - calculate the price of many houses)
 
-When $A$ is a list of column vectors, and the vector is a list of coefficients - we think of it as mixing the columns of $A$ into a single column using $v$  (example - tissue mixing?)
+2. When $A$ is a list of column vectors, and the vector is a list of coefficients - we think of it as mixing the columns of $A$ into a single column using $v$  (example - tissue mixing?)
 
 ![Matrix weighted combination]({{ site.baseurl }}/images/matrix_multiplication/matrix_weighted_combination.png "Matrix weighted combination")
 
-$A$ is a geometric operation, $v$ is a point - $u$ is the point $v$ after being transformed by A. e.g. rotation, scaling
+3. When $A$ is a transformation and $v$ is a point or object to be transformed by $A$, $u$ is the $v$ after being transformed.  
 
-$A$ is a transformation, $v$ is an object - $u$ is the object $v$ after being transformed by $A$. e.g. image blurring
+If $v$ is a point and $A$ is a geometric operation such as a rotation or scaling, then $u$ is the transformed point:
+
+(image)
+
+If $v$ is a higher-level object such as an image, and $A$ is a transformation such as blurring, then $u$ is the transformed object:
+
+(image)
 
 ### Matrix-matrix multiplication
 
-The simplest case is when B is a list of column vectors. In this case the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents.
+1. The simplest case is when B is a list of column vectors. In this case the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents.
 
 For example, when A is a transformation - C is a list of transformed vectors.
 
@@ -111,11 +115,11 @@ If A is a list of row vectors, the result is a list of lists, i.e. a table, wher
 
 When A is a list of column vectors - result is a list of columns, where column j is a weighted combination of the columns of A with the coefficients in column j of B (e.g. gene expression)
 
-When both A and B are transformation, C too is a transformation that is achieved by applying B and then A, since:
+2. When both A and B are transformation, C too is a transformation that is achieved by applying B and then A, since:
 
 $$C \cdot v = (A \cdot B) \cdot v = A \cdot (B \cdot v)$$
 
-Lastly, a rare one that is more math-heavy is when B is a list of row vectors - result is a transformation that is the sum of n rank-1 outer products (i.e. 1d projections) between column i of A and row i of B. This gives us a way to break down the overall effect of the transformation into components (e.g. SVD).
+3. Lastly, a rare one that is more math-heavy is when B is a list of row vectors - result is a transformation that is the sum of n rank-1 outer products (i.e. 1d projections) between column i of A and row i of B. This gives us a way to break down the overall effect of the transformation into components (e.g. SVD).
 
 ## Conclusion
 
