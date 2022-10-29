@@ -11,7 +11,7 @@ $$ C_{ij}=\sum_{k=1}^{n} A_{ik} \cdot B_{kj} $$
 
 In other words, the cell at row $i$ and column $j$ in $C$ is calculated by summing the products of each item in the $i$-th row of $A$ and the $j$-th column of $B$.
 
-(animation for basic intuition, e.g. Wikipedia)
+![Basic intuition]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Basic intuition")
 
 Stopping the explanation at this point, however, is doing matrix multiplication an injustice - this technical definition does not show the situations in which matrix multiplications might arise, or help understand how its output is affected by its input. To make things worse, the same concept has multiple possible interpretations each suitable to a different situation, and having only a single interpretation in mind might only make it confusing when another interpretation is more suitable.
 
@@ -25,17 +25,17 @@ A key to having a good intuition in mind is to be very clear and explicit about 
 
 The most basic building block of linear algebra is a vector, which is just an array of numbers:
 
-(image of array of numbers)
+![Array of numbers]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Array of numbers")
 
 This bare-bones representation is mainly useful when each cell describes a completely different property in a different scale, which just happen to be grouped in an arbitrary ordering. For example, if the vector represents the attributes of a house, the first cell might contain its size and the second cell its number of rooms.
 
 Sometimes, however, we prefer to think of these numbers as coordinates of a space. While this is always possible, it is mainly helpful when all cells contain numbers with similar meaning and scale (otherwise distances and angles don't tell us much). It is then helpful to imagine the vector as a point in space, or an arrow from the origin to that point:
 
-(images of vectors in euclidean space)
+![Vectors in euclidean space]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Vectors in euclidean space")
 
 Lastly, sometimes our vectors represent objects in some domain such as an image or an audiowave. While also made of numbers, they may have domain-specific interpretation, e.g. making all numbers composing an image smaller makes the image darker.
 
-(image of images with corresponding numbers)
+![Images]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Images")
 
 The appropriate visualization for a vector generally depends on the context in which it is going to be used. For that, let us introduce a way to group vectors together and to apply transformations to them.
 
@@ -43,16 +43,15 @@ The appropriate visualization for a vector generally depends on the context in w
 
 Another important building block is the matrix, which is a two-dimensional array of numbers, also known as a table:
 
-(image of 2d array of numbers)
+![Table of numbers]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Table of numbers")
 
 While all matrices are made up of such numbers, sometimes the numbers come with an additional meaning. The most simple example is a matrix that is formed by grouping vectors, as rows or as columns:
 
-(image of 2d array of numbers split into rows or columns)
-?(image of groups of the objects from previous paragraph?)
+![Matrix split into rows or columns]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Matrix split into rows and columns>")
 
 Every matrix can also be used as a transformation which takes a vector as an input and outputs another vector. Instead of saying we apply the matrix to a vector, we say we multiply the matrix with the vector. While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation, what we visualize instead of the *content* of the matrix is usually its *effect* on vectors.
 
-(image of before and after)
+![Before and after]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Before and after")
 
 Now that we understand how to think about the data, let's see how to think about transformations we can apply to it. 
 
@@ -66,24 +65,24 @@ Multiplying a vector $v$ with a vector $u$ gives a single number, a scalar, that
 
 When one of the vectors is a set of coefficients, this sum is a weighted combination of the other. In the house prices setting, if the $i$-th cell of $v$ contains some attribute of the house and the corresponding cell of $u$ contains the money we can expect for one unit of this attribute, then $v \cdot u$ gives us the money we can expect for this house.
 
-(image of weighted mix)
+![Weighted combination]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Weighted combination")
 
 When both vectors are interpreted as points in space, the product also has a geometric meaning. 
 An additional formula for the product of $v$ and $u$ is:
 
-$$ v \cdot u = |v| \cdot |u| \cdot \cos \theta $$
+$$ v \cdot u = ||v|| \cdot ||u|| \cdot \cos \theta $$
 
-Where $ |v| $ is the length of $v$, $ |u| $ is the length of $u$ and $\theta$ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars. 
+Where $||v||$ is the length of $v$, $||u||$ is the length of $u$ and $\theta$ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars. 
 
 This is mainly interesting when the lengths of both vectors are constant (e.g. they are 1), and then a higher result corresponds to the angle between them being more acute. In other words, the product measures "to what degree are $u$ and $v$ pointing in the same direction" which we think of as "how similar are $u$ and $v$".
 
 TODO describe projection in direction
 
-(image of projection)
+![Projection]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Projection")
 
 When both vectors represent an object of the same type (for example, an image) we still interpret their product as similarity or correlation, without thinking about angles. (image pattern matching)
 
-(image of pattern matching)
+![Pattern matching]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Pattern matching")
 
 ### Matrix-vector multiplication
 
