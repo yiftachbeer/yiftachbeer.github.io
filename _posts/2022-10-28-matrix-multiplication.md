@@ -13,7 +13,7 @@ In other words, the cell at row $i$ and column $j$ in $C$ is calculated by summi
 
 ![Basic intuition]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Basic intuition")
 
-Stopping the explanation at this point, however, is doing matrix multiplication an injustice - this technical definition does not show the situations in which matrix multiplications might arise, or help understand how its output is affected by its input. To make things worse, the same concept has multiple possible interpretations each suitable to a different situation, and having only a single interpretation in mind might only make it confusing when another interpretation is more suitable.
+Stopping the explanation at this point, however, is doing matrix multiplication an injustice - this technical definition does not show the situations in which matrix multiplications might arise, or help understand how its output is affected by its input. To make things worse, the same concept has multiple possible interpretations each suitable to a different situation, and having in mind an interpretation unsuitable for a given situation might only make things more confusing.
 
 The goal of this post, therefore, is to outline some common interpretations of matrix multiplication, propose how to best mentally visualize them, and help identify when each of them might be useful.
 
@@ -45,11 +45,13 @@ Another important building block is the matrix, which is a two-dimensional array
 
 ![Table of numbers]({{ site.baseurl }}/images/matrix_multiplication/table_of_numbers.png "Table of numbers")
 
-While all matrices are made up of such numbers, sometimes the numbers come with an additional meaning. The most simple example is a matrix that is formed by grouping vectors, as rows or as columns:
+While all matrices are made up of such numbers, sometimes the numbers come with an additional meaning. The most simple example is a matrix that is formed by grouping vectors, either as rows or as columns:
 
 ![Matrix split into rows or columns]({{ site.baseurl }}/images/matrix_multiplication/matrix_as_cols_and_rows.png "Matrix split into rows and columns>")
 
-Every matrix can also be used as a transformation which takes a vector as an input and outputs another vector. Instead of saying we apply the matrix to a vector, we say we multiply the matrix with the vector. While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation, what we visualize instead of the *content* of the matrix is usually its *effect* on vectors.
+Every matrix can also be used as a transformation which takes a vector as an input and returns another vector as its output. Instead of saying we *apply* the matrix *to* a vector, we say we *multiply* the matrix *with* the vector. 
+
+While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation, what we visualize instead of the *content* of the matrix is usually its *effect* on vectors.
 
 ![Before and after]({{ site.baseurl }}/images/matrix_multiplication/matrix_as_transformation.png "Before and after")
 
@@ -61,11 +63,11 @@ To build up to multiplying a matrix by a matrix, we start with multiplying a vec
 
 ### Vector-vector multiplication
 
-Multiplying a vector $v$ with a vector $u$ gives a single number, a scalar, that is calculated with the formula $\sum_{i=1}^{n} v_{i} \cdot u_{i}$, which we have seen appearing for each cell in the output matrix in the introduction. 
+Multiplying a vector $v$ with a vector $u$ gives a single number, a scalar, that is calculated with the formula $\sum_{i=1}^{n} v_{i} \cdot u_{i}$, which we have seen appearing for each cell in the output matrix in the introduction. Based on what the vectors represent, we can give this operation different meanings: 
 
 When one of the vectors is a set of coefficients, this sum is a weighted combination of the other. In the house prices setting, if the $i$-th cell of $v$ contains some attribute of the house and the corresponding cell of $u$ contains the money we can expect for one unit of this attribute, then $v \cdot u$ gives us the money we can expect for this house.
 
-![Weighted combination]({{ site.baseurl }}/images/matrix_multiplication/weighted_combination.png "Weighted combination")
+![Weighted combination]({{ site.baseurl }}/images/matrix_multiplication/dot_as_combination_house.png "Weighted combination")
 
 When both vectors are interpreted as points in space, the product also has a geometric meaning. 
 An additional formula for the product of $v$ and $u$ is then
@@ -92,6 +94,8 @@ The interpretation for a product of the form $u = A \cdot v$ highly depends on w
 When $A$ is a list of row vectors, this is equivalent to a many simultaneous vector-vector multiplications (in the house prices example - calculate the price of many houses)
 
 When $A$ is a list of column vectors, and the vector is a list of coefficients - we think of it as mixing the columns of $A$ into a single column using $v$  (example - tissue mixing?)
+
+![Matrix weighted combination]({{ site.baseurl }}/images/matrix_multiplication/matrix_weighted_combination.png "Matrix weighted combination")
 
 $A$ is a geometric operation, $v$ is a point - $u$ is the point $v$ after being transformed by A. e.g. rotation, scaling
 
