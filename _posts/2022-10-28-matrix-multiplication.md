@@ -3,7 +3,7 @@ layout: post
 title: (Work in progress) How to Think About Matrix Multiplication
 ---
 
-Matrix multiplication is one of the concepts where reading the formula is easy, but developing intuition takes more time. Since it is such a common concept in linear algebra, in this post we try to develop better intuitions for it.
+Matrix multiplication is one of the concepts where reading the formula is easy, but developing intuition takes more time. Since it is such a common concept in linear algebra, in this post we try to develop a better intuition for it.
 
 Matrix multiplication is formally defined as follows - if $A$ is a matrix of size $m \times n$ and $B$ is a matrix of size $n \times p$, then $C = A \cdot B$ is a matrix of size $m \times p$, where its cells are given by
 
@@ -68,11 +68,18 @@ When one of the vectors is a set of coefficients, this sum is a weighted combina
 ![Weighted combination]({{ site.baseurl }}/images/matrix_multiplication/basic_intuition.png "Weighted combination")
 
 When both vectors are interpreted as points in space, the product also has a geometric meaning. 
-An additional formula for the product of $v$ and $u$ is:
+An additional formula for the product of $v$ and $u$ is then
 
-$$ v \cdot u = ||v|| \cdot ||u|| \cdot \cos \theta $$
+$$ v \cdot u = ||v|| \cdot ||u|| \cdot \cos(\theta) $$
 
-Where $||v||$ is the length of $v$, $||u||$ is the length of $u$ and $\theta$ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars. 
+Where 
+$ ||v|| $ is the length of $v$,
+
+$ ||u|| $ is the length of $u$ and
+
+$ \theta $
+
+is the angle between them. Notice that the right-hand side does not contain vectors, only scalars. 
 
 This is mainly interesting when the lengths of both vectors are constant (e.g. they are 1), and then a higher result corresponds to the angle between them being more acute. In other words, the product measures "to what degree are $u$ and $v$ pointing in the same direction" which we think of as "how similar are $u$ and $v$".
 
