@@ -90,7 +90,7 @@ Based on what the vectors represent, we can give this operation different interp
 
     ![Projection]({{ site.baseurl }}/images/matrix_multiplication/dot_as_projection.png "Projection")
 
-    When both lengths are constant (e.g. they are 1) then a higher result corresponds to the angle $\theta$ being more acute. Then the product measures "how similar are $u$ and $v$", as an easier way to say "to what degree are $u$ and $v$ pointing in the same direction".
+    When both lengths are constant (e.g. they are 1) then a higher result corresponds to the angle $\theta$ being more acute. Then the product measures "how similar are $u$ and $v$", as an easier way to say "between $-1$ and $1$, how much are $u$ and $v$ pointing in the same direction" (with $1$ noting same direction, $-1$ being opposite directions, and $0$ being orthogonal).
 
 3. When both vectors represent an object of the same type (for example, an image) we still interpret their product as similarity or correlation, without thinking about angles.
 
@@ -106,45 +106,43 @@ The interpretation for a product of the form $u = A \cdot v$ highly depends on w
 
     ![Matrix weighted combination]({{ site.baseurl }}/images/matrix_multiplication/matrix_weighted_combination.png "Matrix weighted combination")
 
-    For example, the columns of $A$ could be ..., combined to form a ... . 
+    For example, the columns of $A$ could be ingredients of various fruits, combined to form a vector describing the ingredients of a salad. 
 
 3. When $A$ is a transformation and $v$ is a point or object to be transformed by $A$, $u$ is the $v$ after being transformed.  
 
     If $v$ is a point and $A$ is a geometric operation such as a rotation or scaling, then $u$ is the transformed point:
 
-    (image)
+    ![Shrinking matrix]({{ site.baseurl }}/images/matrix_multiplication/shrinking_matrix.png "Shrinking matrix")
 
     If $v$ is a higher-level object such as an image, and $A$ is a transformation such as blurring, then $u$ is the transformed object:
 
-    (image)
+    ![Image Operation Matrix]({{ site.baseurl }}/images/matrix_multiplication/image_operation_matrix.png "Image Operation Matrix")
 
-It is easy to get confused by 2 and 3. In 2 the transformation is $v$ acting on the data in $A$, and in 3 the transformation is $A$, acting on the data $v$.
+It is easy to get confused by 2 and 3. In 2, $v$ transforms the data in $A$, while in 3 the transformation $A$ acts on the data $v$.
 
 ### Matrix-matrix multiplication
 
 In a matrix-matrix multiplication of the form $C = A \cdot B$, the first step is to figure out what $B$ represents.  
 
-1. The simplest case and most common case is when $B$ is a list of column vectors. In this case the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents.
+1. The simplest and most common case is when $B$ is a list of column vectors. In this case, the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents. Since multiple results are returned, what was previously a scalar becomes a vector and vectors become matrices.
      
-    Note though that since we group many multiple results, what previously return a single number now returns a vector (a list of numbers), and what returned a vector now returns a matrix (a list of column vectors).
+    a. When $A$ is a transformation, then the resulting $C$ is a list of the vectors $B$ after being transformed by $A$.
 
-    a. When $A$ is a transformation - $C$ is a list of transformed vectors.
-
-    b. If $A$ is a list of row vectors, the result is a list of lists, i.e. a table, where the cell at index $i,j$ is the result of multiplication between the vector at row $i$ to vector at column $j$, as in the first visualization in this page. 
+    b. If $A$ is a list of row vectors, the result is a list of lists, i.e. a table, where the cell at index $i,j$ is the dot product of row $i$ of $A$ with column $j$ of $B$, as in the first visualization we've seen. 
     This usually describes a case where $A$ and $B$ store two lists of the same size containing objects that can interact - for example, houses and different house pricings, user preferences and items, words and documents. 
 
-    c. When $A$ is a list of column vectors - result is a list of columns, where column $j$ is a weighted combination of the columns of $A$ with the coefficients in column $j$ of $B$ (e.g. gene expression)
+    c. When $A$ is a list of column vectors, then the resulting $C$ is a list of column vectors, each formed as a different weighted combination of the columns of $A$ - column $j$ of $C$ is a weighted combination of the columns of $A$ with the coefficients in column $j$ of $B$.
 
-3. When both $A$ and $B$ are transformation, $C$ too is a transformation that is achieved by applying $$ and then $A$, since:
+2. When $A$ and $B$ are both transformations, then $C$ too is a transformation that is achieved by applying $$ and then $A$, since:
 
     $$C \cdot v = (A \cdot B) \cdot v = A \cdot (B \cdot v)$$
 
     For example if $A$ rotates vectors and $B$ shrinks them in one direction, $C$ will first shrink them and then rotate them.
 
-4. Lastly, a rare one that is more math-heavy is when $B$ is a list of row vectors - result is a transformation that is the sum of n rank-1 outer products (i.e. 1d projections) between column $i$ of $A$ and row $i$ of $B$. This gives us a way to break down the overall effect of the transformation into components (e.g. SVD).
-
-   (image)
-
 ## Conclusion
 
-Hopefully, by now it is clear that the same concept can be visualized in multiple ways, and when these might be useful. While this list of visualizations might seem long, it is important to emphasize that some of these situations are much more common than others. The key takeaway is that being clear and explicit about what the matrices represent enables choosing the most helpful mental visualization.
+Hopefully, by now it is clear that the same concept can be visualized in multiple ways, and when these might be useful. 
+
+While this list of visualizations might seem long, it is important to emphasize that some of these situations are much more common than others. Some other, less common interpretations have been left out (e.g. operations on rows, block matrices, sum of projections) and might be dealt with in a future post. 
+
+The key takeaway is that being clear and explicit about what the matrices represent enables choosing the most helpful mental visualization.
