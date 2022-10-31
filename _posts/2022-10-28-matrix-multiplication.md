@@ -79,17 +79,18 @@ Based on what the vectors represent, we can give this operation different interp
 
     In the house prices setting, if the $i$-th cell of $v$ contains some attribute of the house and the corresponding cell of $u$ contains the money we can expect for one unit of this attribute, then $v \cdot u$ gives us the total cost of the house.
 
-2. When both vectors are interpreted as points in space, the product also has a geometric meaning. 
-    An additional formula for the product of $v$ and $u$ is then
+2. When both vectors are interpreted as points in space, there is an additional formula to calculate the product based on geometric properties:
 
     $$ v \cdot u = \|v\| \cdot \|u\| \cdot \cos(\theta) $$
 
     Where 
     $\|v\|$ is the length of $v$, $\|u\|$ is the length of $u$ and $ \theta $ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars.
 
+    This is mainly interesting when one of the length of $u$ is 1, because then the product is the projection of $v$ onto $v$:  
+
     ![Projection]({{ site.baseurl }}/images/matrix_multiplication/dot_as_projection.png "Projection")
 
-    This is mainly interesting when the lengths of both vectors are constant (e.g. they are 1), and then a higher result corresponds to the angle between them being more acute. In other words, the product measures "to what degree are $u$ and $v$ pointing in the same direction" which we think of as "how similar are $u$ and $v$".
+    When both lengths are constant (e.g. they are 1) then a higher result corresponds to the angle $\theta$ being more acute. Then the product measures "how similar are $u$ and $v$", as an easier way to say "to what degree are $u$ and $v$ pointing in the same direction".
 
 3. When both vectors represent an object of the same type (for example, an image) we still interpret their product as similarity or correlation, without thinking about angles.
 
