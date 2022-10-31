@@ -89,7 +89,7 @@ Based on what the vectors represent, we can give this operation different interp
 
     ![Projection]({{ site.baseurl }}/images/matrix_multiplication/dot_as_projection.png "Projection")
 
-This is mainly interesting when the lengths of both vectors are constant (e.g. they are 1), and then a higher result corresponds to the angle between them being more acute. In other words, the product measures "to what degree are $u$ and $v$ pointing in the same direction" which we think of as "how similar are $u$ and $v$".
+    This is mainly interesting when the lengths of both vectors are constant (e.g. they are 1), and then a higher result corresponds to the angle between them being more acute. In other words, the product measures "to what degree are $u$ and $v$ pointing in the same direction" which we think of as "how similar are $u$ and $v$".
 
 3. When both vectors represent an object of the same type (for example, an image) we still interpret their product as similarity or correlation, without thinking about angles.
 
@@ -121,19 +121,28 @@ It is easy to get confused by 2 and 3. In 2 the transformation is $v$ acting on 
 
 ### Matrix-matrix multiplication
 
-1. The simplest case is when $B$ is a list of column vectors. In this case the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents.
+In a matrix-matrix multiplication of the form $C = A \cdot B$, the first step is to figure out what $B$ represents.  
 
-    For example, when $A$ is a transformation - $C$ is a list of transformed vectors.
+1. The simplest case and most common case is when $B$ is a list of column vectors. In this case the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents.
+     
+    Note though that since we group many multiple results, what previously return a single number now returns a vector (a list of numbers), and what returned a vector now returns a matrix (a list of column vectors).
 
-    If $A$ is a list of row vectors, the result is a list of lists, i.e. a table, where the cell at index $i,j$ is the result of multiplication between the vector at row $i$ to vector at column $j$, as in the first visualization in this page. This visualization is helpful, for example, in the movie recommendation collaborative filtering scenario. 
+    a. When $A$ is a transformation - $C$ is a list of transformed vectors.
 
-    When $A$ is a list of column vectors - result is a list of columns, where column $j$ is a weighted combination of the columns of $A$ with the coefficients in column $j$ of $B$ (e.g. gene expression)
+    b. If $A$ is a list of row vectors, the result is a list of lists, i.e. a table, where the cell at index $i,j$ is the result of multiplication between the vector at row $i$ to vector at column $j$, as in the first visualization in this page. 
+    This usually describes a case where $A$ and $B$ store two lists of the same size containing objects that can interact - for example, houses and different house pricings, user preferences and items, words and documents. 
 
-2. When both $A$ and $B$ are transformation, $C$ too is a transformation that is achieved by applying $$ and then $A$, since:
+    c. When $A$ is a list of column vectors - result is a list of columns, where column $j$ is a weighted combination of the columns of $A$ with the coefficients in column $j$ of $B$ (e.g. gene expression)
+
+3. When both $A$ and $B$ are transformation, $C$ too is a transformation that is achieved by applying $$ and then $A$, since:
 
     $$C \cdot v = (A \cdot B) \cdot v = A \cdot (B \cdot v)$$
 
-3. Lastly, a rare one that is more math-heavy is when $B$ is a list of row vectors - result is a transformation that is the sum of n rank-1 outer products (i.e. 1d projections) between column $i$ of $A$ and row $i$ of $B$. This gives us a way to break down the overall effect of the transformation into components (e.g. SVD).
+    For example if $A$ rotates vectors and $B$ shrinks them in one direction, $C$ will first shrink them and then rotate them.
+
+4. Lastly, a rare one that is more math-heavy is when $B$ is a list of row vectors - result is a transformation that is the sum of n rank-1 outer products (i.e. 1d projections) between column $i$ of $A$ and row $i$ of $B$. This gives us a way to break down the overall effect of the transformation into components (e.g. SVD).
+
+   (image)
 
 ## Conclusion
 
