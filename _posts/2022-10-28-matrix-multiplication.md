@@ -86,7 +86,7 @@ Based on what the vectors represent, we can give this operation different interp
     Where 
     $\|v\|$ is the length of $v$, $\|u\|$ is the length of $u$ and $ \theta $ is the angle between them. Notice that the right-hand side does not contain vectors, only scalars.
 
-    This is mainly interesting when one of the length of $u$ is 1, because then the product is the projection of $v$ onto $v$:  
+    This is mainly interesting when one of the length of $u$ is 1, because then the product is the projection of $v$ onto $u$:  
 
     ![Projection]({{ site.baseurl }}/images/matrix_multiplication/dot_as_projection.png "Projection")
 
