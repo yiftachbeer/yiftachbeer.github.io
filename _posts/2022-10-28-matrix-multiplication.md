@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Work in progress) How to Think About Matrix Multiplication
+title: How to Think About Matrix Multiplication
 ---
 
 Matrix multiplication is one of the concepts where reading the formula is easy, but developing intuition takes more time. Since it is such a common concept in linear algebra, in this post we try to develop a better intuition for it.
