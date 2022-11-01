@@ -29,7 +29,7 @@ The most basic building block of linear algebra is a vector, which is just an ar
 
 This bare-bones representation is mainly useful when each cell describes a completely different property in a different scale, which just happen to be grouped in an arbitrary ordering. 
 
-For example, if the vector represents the attributes of a house, the first cell might contain its size and the second cell its number of rooms.
+For example, if the vector represents the attributes of a house, the first cell might contain the number of houses, the second its size in some unit, and the third the number of balconies.
 
 Sometimes, however, we prefer to think of these numbers as coordinates of a space. While this is always possible, it is mainly helpful when all cells contain numbers with similar meaning and scale (otherwise distances and angles don't tell us much). It is then helpful to imagine the vector as a point in space, or an arrow from the origin to that point:
 
@@ -51,9 +51,9 @@ While all matrices are made up of such numbers, sometimes the numbers come with 
 
 ![Matrix split into rows or columns]({{ site.baseurl }}/images/matrix_multiplication/matrix_as_cols_and_rows.png "Matrix split into rows and columns>")
 
-Every matrix can also be used as a transformation which takes a vector as an input and returns another vector as its output. Instead of saying we **apply** the matrix **to** a vector, we say we **multiply** the matrix **with** the vector. 
+Beside storing data, every matrix can also be used as a transformation which takes a vector as an input and returns another vector as its output. Instead of saying we **apply** the matrix **to** a vector, we say we **multiply** the matrix **with** the vector. 
 
-While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation, what we visualize instead of the **content** of the matrix is usually its **effect** on vectors.
+While we will get to the way such a transformation works later in this post, a key idea is that when a matrix is interpreted as a transformation then what we visualize, instead of the **content** of the matrix, is usually its **effect** on vectors.
 
 ![Before and after]({{ site.baseurl }}/images/matrix_multiplication/matrix_as_transformation.png "Before and after")
 
@@ -126,7 +126,7 @@ In a matrix-matrix multiplication of the form $C = A \cdot B$, the first step is
 
 1. The simplest and most common case is when $B$ is a list of column vectors. In this case, the multiplication can be broken down to a list of independent multiplications from the previous section, which we interpret using the guidelines from before, based on what $A$ represents. Since multiple results are returned, what was previously a scalar becomes a vector and vectors become matrices.
      
-    a. When $A$ is a transformation, then the resulting $C$ is a list of the vectors $B$ after being transformed by $A$.
+    a. When $A$ is a transformation, then the resulting $C$ is a list of the vectors in $B$ after having been transformed by $A$.
 
     b. If $A$ is a list of row vectors, the result is a list of lists, i.e. a table, where the cell at index $i,j$ is the dot product of row $i$ of $A$ with column $j$ of $B$, as in the first visualization we've seen. 
     This usually describes a case where $A$ and $B$ store two lists of the same size containing objects that can interact - for example, houses and different house pricings, user preferences and items, words and documents. 
