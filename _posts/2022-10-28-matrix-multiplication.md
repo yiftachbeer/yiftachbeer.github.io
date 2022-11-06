@@ -133,7 +133,7 @@ In a matrix-matrix multiplication of the form $C = A \cdot B$, the first step is
 
     c. When $A$ is a list of column vectors, then the resulting $C$ is a list of column vectors, each formed as a different weighted combination of the columns of $A$ - column $j$ of $C$ is a weighted combination of the columns of $A$ with the coefficients in column $j$ of $B$.
 
-2. When $A$ and $B$ are both transformations, then $C$ too is a transformation that is achieved by applying $$ and then $A$, since:
+2. When $A$ and $B$ are both transformations, then $C$ too is a transformation that is achieved by applying $C$ and then $A$, since:
 
     $$C \cdot v = (A \cdot B) \cdot v = A \cdot (B \cdot v)$$
 
